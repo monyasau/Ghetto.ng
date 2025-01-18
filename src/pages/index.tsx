@@ -54,7 +54,7 @@ export default function Home() {
       <label className="py-2 px-3 lg:px-6 border transition-colors hover:bg-black/20 duration-500 border-white rounded-lg" htmlFor="waitlist">Join Our Waitlist</label>
     </div>
       <div className="text-center space-y-4 md:space-y-6">
-        <Link to={"/waiter"} className="text-[#F2C94C] font-semibold text-3xl">Almost here{loadingText}</Link>
+        <Link to={"/waiter"} className="text-[#F2C94C] font-bold lg:font-semibold text-3xl">Almost here{loadingText}</Link>
         <p className="text-white text-xl">We are an Entertainment Management Company.</p>
       </div>
       <div className="bg-[#E0E0E0] w-[620px] max-w-[90vw] rounded-3xl text-center px-8 py-12 lg:px-16 space-y-2">
