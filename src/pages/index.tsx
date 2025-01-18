@@ -50,7 +50,7 @@ export default function Home() {
         <h2 className="text-[#219653] font-bold text-xl">Join our waitlist</h2>
         <p className="!mb-8">Sign up to get the latest updates and get notified when we launch.</p>
         <div className="flex flex-col items-center lg:flex-row gap-y-4 gap-x-2">
-        <input onChange={handleInput} id="waitlist" type="email" required className="focus:scale-110 transition-transform ease-in-out duration-100 border text-[#BDBDBD] font-bold rounded px-4 py-2 w-full lg:min-w-[75%] text-center border-black" placeholder="example@example.com"/>
+        <input onChange={handleInput} id="waitlist" type="email" required className="focus:scale-110 transition-transform ease-in-out duration-100 border text-[#BDBDBD] font-bold rounded px-4 py-2 w-full lg:min-w-[70%] text-center border-black" placeholder="example@example.com"/>
         <button type="submit" onClick={handleSubmit} disabled={loading} className="bg-[#219653] w-fit lg:w-full px-8 lg:px-6 py-2 text-white rounded-lg">{loading?"Please Wait":"Sign Up"}</button>
         </div>
       </div>
