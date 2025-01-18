@@ -1,4 +1,40 @@
+import { ChangeEvent, useState } from "react";
+
 export default function Home() {
+  const [waitEmail, setWaitEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit=async ()=>{
+    const waitlistPayload={
+      name: "ghetto.ng",
+      email: waitEmail,
+      twitterUsername: "ghetto.ng"
+    }
+    if(waitEmail&&/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(waitEmail)){
+      setLoading(true)
+        try{
+            const response = await fetch("https://foodsave.vercel.app/api/addtowaitlist", {
+                method: "POST",
+                body: JSON.stringify(waitlistPayload),
+              });
+              if(response.ok){
+                  alert("You have been successfully added to our waitlist, we will contact you by email.")
+            }else if(response.status==400){
+                alert("You have been added already, you will be contacted in the future");
+                }
+        }
+        catch{
+          console.log("")
+        }
+        finally {
+          setLoading(false)
+        }
+    }else{
+        alert("An email address is required")
+    }
+}
+    const handleInput=(e:ChangeEvent<HTMLInputElement>)=>setWaitEmail(e.target.value)
+
   return (
     <div className="bg-[url('/backdrop.jpg')] w-screen min-h-screen bg-cover flex justify-center">
     <div className="flex flex-col items-center justify-between pb-16 gap-16 bg-black/50 w-full">
@@ -14,8 +50,8 @@ export default function Home() {
         <h2 className="text-[#219653] font-bold text-xl">Join our waitlist</h2>
         <p className="!mb-8">Sign up to get the latest updates and get notified when we launch.</p>
         <div className="flex flex-col items-center lg:flex-row gap-y-4 gap-x-2">
-        <input id="waitlist" type="text" className="focus:scale-110 transition-transform ease-in-out duration-100 border text-[#BDBDBD] font-bold rounded px-4 py-2 w-full lg:min-w-[75%] text-center border-black" placeholder="example@example.com"/>
-        <button className="bg-[#219653] w-fit lg:w-full px-8 lg:px-6 py-2 text-white rounded-lg">Sign Up</button>
+        <input onChange={handleInput} id="waitlist" type="email" required className="focus:scale-110 transition-transform ease-in-out duration-100 border text-[#BDBDBD] font-bold rounded px-4 py-2 w-full lg:min-w-[75%] text-center border-black" placeholder="example@example.com"/>
+        <button type="submit" onClick={handleSubmit} disabled={loading} className="bg-[#219653] w-fit lg:w-full px-8 lg:px-6 py-2 text-white rounded-lg">{loading?"Please Wait":"Sign Up"}</button>
         </div>
       </div>
     </div>
