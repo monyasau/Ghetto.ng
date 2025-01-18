@@ -43,7 +43,7 @@ export default function Home() {
       <label className="py-2 px-3 lg:px-6 border transition-colors hover:bg-black/20 duration-500 border-white rounded-lg" htmlFor="waitlist">Join Our Waitlist</label>
     </div>
       <div className="text-center space-y-4 md:space-y-6">
-        <h1 className="text-[#F2C94C] font-semibold text-3xl">Almost here...</h1>
+        <Link to={"/waiter"} className="text-[#F2C94C] font-semibold text-3xl">Almost here...</Link>
         <p className="text-white text-xl">We are an Entertainment Management Company.</p>
       </div>
       <div className="bg-[#E0E0E0] w-[620px] max-w-[90vw] rounded-3xl text-center px-8 py-12 lg:px-16 space-y-2">
@@ -52,7 +52,7 @@ export default function Home() {
         <div className="flex flex-col items-center lg:flex-row gap-y-4 gap-x-2">
         <input onChange={handleInput} id="waitlist" type="email" required className="focus:scale-110 transition-transform ease-in-out duration-100 border text-[#BDBDBD] font-bold rounded px-4 py-2 w-full lg:min-w-[75%] text-center border-black" placeholder="example@example.com"/>
         <button type="submit" onClick={handleSubmit} disabled={loading} className="bg-[#219653] w-fit lg:w-full px-8 lg:px-6 py-2 text-white rounded-lg">{loading?"Please Wait":"Sign Up"}</button>
-        </div><Link to={"/waiter"}>Ssss</Link>
+        </div>
       </div>
     </div>
     </div>
