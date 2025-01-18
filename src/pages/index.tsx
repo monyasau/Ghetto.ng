@@ -1,10 +1,21 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { Link } from "../router";
 
 export default function Home() {
   const [waitEmail, setWaitEmail] = useState("");
   const [loading, setLoading] = useState(false);
+  const [loadingText, setLoadingText] = useState("."); // New state for the text
 
+  useEffect(() => {
+    const textVariants = [".", "..", "...", "....", ".....", "....", "...", "..",".",""];
+    let index = 0;
+    const interval = setInterval(() => {
+      index = (index + 1) % textVariants.length;
+      setLoadingText(textVariants[index]);
+    }, 400);
+    // Cleanup the interval on component unmount
+    return () => clearInterval(interval);
+  }, []);
   const handleSubmit=async ()=>{
     const waitlistPayload={
       name: "ghetto.ng",
@@ -43,7 +54,7 @@ export default function Home() {
       <label className="py-2 px-3 lg:px-6 border transition-colors hover:bg-black/20 duration-500 border-white rounded-lg" htmlFor="waitlist">Join Our Waitlist</label>
     </div>
       <div className="text-center space-y-4 md:space-y-6">
-        <Link to={"/waiter"} className="text-[#F2C94C] font-semibold text-3xl">Almost here...</Link>
+        <Link to={"/waiter"} className="text-[#F2C94C] font-semibold text-3xl">Almost here{loadingText}</Link>
         <p className="text-white text-xl">We are an Entertainment Management Company.</p>
       </div>
       <div className="bg-[#E0E0E0] w-[620px] max-w-[90vw] rounded-3xl text-center px-8 py-12 lg:px-16 space-y-2">
